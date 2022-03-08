@@ -10,3 +10,5 @@ build-*
 __pycache__
 logs
 workspace.code-workspace
+*.out
+*.log
