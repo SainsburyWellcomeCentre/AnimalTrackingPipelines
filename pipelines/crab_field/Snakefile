@@ -18,48 +18,48 @@ rule all:
 
 
 
-# rule convert_mov_to_mp4_highqual:
-#     input:
-#         video = config['raw_path'] + "/{session}/cam{camera,[0-9]}/{rawmov}.MOV"
-#     output:
-#         config['processed_path'] + "/videos/high_qual/{session}_cam{camera,[0-9]}_{rawmov}.mp4"
-#     params:
-#         codec="libx265",
-#         crf=18,
-#         pix_fmt="yuv420p10le"
-#     log:
-#         config['processed_path'] + "/videos/high_qual/log/{session}_cam{camera,[0-9]}_{rawmov}.log"
-#     conda:
-#         "../../tools/ffmpeg/environment.yml"
-#     container:
-#         "docker://jrottenberg/ffmpeg:3-alpine"
-#     priority: -100   # Run at the end, once everything else is done.
-#     shell:
-#         # For more info on these settings, see:
-#         #  - https://trac.ffmpeg.org/wiki/Encode/H.265
-#         #  - https://slhck.info/video/2017/03/01/rate-control.html
-#         #  - https://x265.readthedocs.io/en/stable/presets.html
-#         "ffmpeg -i {input.video} -c:v {params.codec} -pix_fmt {params.pix_fmt} -crf {params.crf} {output} 2> {log}"
+rule convert_mov_to_mp4_highqual:
+    input:
+        video = config['raw_path'] + "/{session}/cam{camera,[0-9]}/{rawmov}.MOV"
+    output:
+        config['processed_path'] + "/videos/high_qual/{session}_cam{camera,[0-9]}_{rawmov}.mp4"
+    params:
+        codec="libx265",
+        crf=18,
+        pix_fmt="yuv420p10le"
+    log:
+        config['processed_path'] + "/videos/high_qual/log/{session}_cam{camera,[0-9]}_{rawmov}.log"
+    conda:
+        "../../tools/ffmpeg/environment.yml"
+    container:
+        "docker://jrottenberg/ffmpeg:3-alpine"
+    priority: -100   # Run at the end, once everything else is done.
+    shell:
+        # For more info on these settings, see:
+        #  - https://trac.ffmpeg.org/wiki/Encode/H.265
+        #  - https://slhck.info/video/2017/03/01/rate-control.html
+        #  - https://x265.readthedocs.io/en/stable/presets.html
+        "ffmpeg -i {input.video} -c:v {params.codec} -pix_fmt {params.pix_fmt} -crf {params.crf} {output} 2> {log}"
 
 
-# rule convert_mov_to_mp4_medqual:
-#     input:
-#         video = config['raw_path'] + "/{session}/cam{camera,[0-9]}/{rawmov}.MOV"
-#     output:
-#         config['processed_path'] + "/videos/med_qual/{session}_cam{camera,[0-9]}_{rawmov}.mp4"
-#     params:
-#         codec="libx265",
-#         crf=26,
-#         pix_fmt="yuv420p10le"
-#     log:
-#         config['processed_path'] + "/videos/med_qual/log/{session}_cam{camera,[0-9]}_{rawmov}.log"
-#     conda:
-#         "../../tools/ffmpeg/environment.yml"
-#     container:
-#         "docker://jrottenberg/ffmpeg:3-alpine"
-#     priority: -1   # Run at the end, once everything else is done.
-#     shell:
-#         "ffmpeg -i {input.video} -c:v {params.codec} -pix_fmt {params.pix_fmt} -crf {params.crf} {output} 2> {log}"
+rule convert_mov_to_mp4_medqual:
+    input:
+        video = config['raw_path'] + "/{session}/cam{camera,[0-9]}/{rawmov}.MOV"
+    output:
+        config['processed_path'] + "/videos/med_qual/{session}_cam{camera,[0-9]}_{rawmov}.mp4"
+    params:
+        codec="libx265",
+        crf=26,
+        pix_fmt="yuv420p10le"
+    log:
+        config['processed_path'] + "/videos/med_qual/log/{session}_cam{camera,[0-9]}_{rawmov}.log"
+    conda:
+        "../../tools/ffmpeg/environment.yml"
+    container:
+        "docker://jrottenberg/ffmpeg:3-alpine"
+    priority: -1   # Run at the end, once everything else is done.
+    shell:
+        "ffmpeg -i {input.video} -c:v {params.codec} -pix_fmt {params.pix_fmt} -crf {params.crf} {output} 2> {log}"
 
 
 rule convert_mov_to_mp4_lowqual:
