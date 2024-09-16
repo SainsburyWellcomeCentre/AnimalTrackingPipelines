@@ -50,7 +50,7 @@ tools/               # Installation files for generally-needed software
 
 ## Running Individual Pipelines
 
-Generall, running the pipeline involves navigating to the pipeline's main directory and calling `snakemake` with the desired options.
+Generally, running the pipeline involves navigating to the pipeline's main directory and calling `snakemake` with the desired options.
 
 Snakemake can be conda-installed or singularity installed.  Environment and recipe files can be found in the `tools/` directory.
 
